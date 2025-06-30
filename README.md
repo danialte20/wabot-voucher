@@ -9,9 +9,9 @@ Sistem bot WhatsApp otomatis untuk manajemen voucher Mikrotik berbasis Node.js. 
 - ��� Autentikasi WhatsApp Web via QR code
 - ���️ Generate dan hapus voucher Mikrotik langsung via WhatsApp
 - ��� Manajemen saldo pelanggan & reseller
-- ��� Sinkronisasi otomatis data voucher dari Mikrotik
+- ��� Sinkronisasi otomatis voucher dari Mikrotik
 - ��� Notifikasi transaksi ke Telegram
-- ⚙️ API lokal untuk integrasi webhook dan layanan eksternal
+- ��� Webhook dan integrasi eksternal
 - ��� Logging aktivitas bot
 - ��� Role command: Admin, Reseller, Customer
 
@@ -22,41 +22,42 @@ Sistem bot WhatsApp otomatis untuk manajemen voucher Mikrotik berbasis Node.js. 
 ```bash
 wabot-voucher/
 ├── ecosystem.config.js         # Konfigurasi untuk PM2
-├── package.json                # Metadata dan dependensi Node.js
+├── package.json                # Metadata dan dependensi
 ├── public/                     # (Opsional) Panel UI (React/TS)
 ├── logs/                       # File log sistem
 ├── README.md                   # Dokumentasi ini
 └── src/
-    ├── bot.js                  # Inisialisasi WhatsApp Web
-    ├── config.js               # File konfigurasi
-    ├── db.js                   # Koneksi ke MySQL/MongoDB
+    ├── bot.js
+    ├── config.js
+    ├── db.js
     ├── commands/
-    │   ├── admin.js            # Perintah untuk Admin
-    │   ├── reseller.js         # Perintah untuk Reseller
-    │   └── customer.js         # Perintah untuk Customer
-    ├── helpers/
-    │   └── logger.js           # Logging ke file
-    ├── mikrotik.js             # Koneksi ke Router Mikrotik
-    ├── services.js             # Layanan utama (topup, generate, cek)
-    ├── sync_voucher.js         # Sinkronisasi voucher dari Mikrotik
-    ├── telegram_notifier.js    # Kirim notifikasi ke Telegram
+    │   ├── admin.js
+    │   ├── reseller.js
+    │   └── customer.js
+    ├── helpers/logger.js
+    ├── mikrotik.js
+    ├── services.js
+    ├── sync_voucher.js
+    ├── telegram_notifier.js
     ├── utils/
-    │   ├── log.js              # Utilities logging
-    │   └── validation.js       # Validasi input
-    ├── utils.js                # Fungsi umum
-    ├── voucher_cleaner.js      # Auto hapus voucher expired
-    └── webhook.js              # Web API untuk integrasi eksternal
-
+    │   ├── log.js
+    │   └── validation.js
+    ├── utils.js
+    ├── voucher_cleaner.js
+    └── webhook.js
 
 ⚙️ Instalasi
 1. Clone dan Install Dependency
-
+bash
+Copy
+Edit
 git clone https://github.com/danialte20/wabot-voucher.git
 cd wabot-voucher
 npm install
-
 2. Setup File .env
-Buat file .env di root direktori:
+env
+Copy
+Edit
 BOT_NAME=WabotVoucher
 DB_HOST=localhost
 DB_USER=root
@@ -67,32 +68,63 @@ MIKROTIK_USER=admin
 MIKROTIK_PASS=admin123
 TELEGRAM_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
-
-
 ▶️ Menjalankan Bot
 Mode Biasa
+bash
+Copy
+Edit
 npm start
-
-
 Mode PM2 (Produksi)
+bash
+Copy
+Edit
 pm2 start ecosystem.config.js
-
 Melihat Log
+bash
+Copy
+Edit
 pm2 logs
+��� Perintah WhatsApp
+Admin
+!buatvoucher 10 1d — Buat 10 voucher dengan masa aktif 1 hari
 
-Dependensi Utama
-| Package               | Fungsi                                      |
-| --------------------- | ------------------------------------------- |
-| `whatsapp-web.js`     | Integrasi WhatsApp melalui browser headless |
-| `puppeteer`           | Menjalankan Chrome headless                 |
-| `node-routeros`       | Mengakses API Mikrotik                      |
-| `dotenv`              | Mengelola variabel lingkungan               |
-| `axios`               | HTTP client untuk API eksternal             |
-| `express`             | Backend API dan webhook                     |
-| `express-rate-limit`  | Batasi spam request API                     |
-| `mysql2` / `mongoose` | Koneksi ke database                         |
-| `qrcode-terminal`     | Menampilkan QR di terminal                  |
+!hapusvoucher — Hapus semua voucher aktif
 
+!tambahsaldo 628xxxx 10000 — Tambah saldo ke user
 
-Lisensi
+Reseller
+!saldo — Lihat saldo reseller
+
+!belivoucher 5 1d — Beli 5 voucher durasi 1 hari
+
+!pelanggan — Lihat daftar pelanggan
+
+Customer
+!help — Daftar perintah
+
+!paket — Cek pilihan voucher
+
+!infoakun — Cek informasi akun
+
+��� Dependensi Utama
+Package	Fungsi
+whatsapp-web.js	Integrasi WhatsApp melalui browser headless
+puppeteer	Menjalankan Chrome headless
+node-routeros	Mengakses API Mikrotik
+dotenv	Mengelola variabel lingkungan
+axios	HTTP client untuk API eksternal
+express	Backend API dan webhook
+express-rate-limit	Batasi spam request API
+mysql2 / mongoose	Koneksi ke database
+qrcode-terminal	Menampilkan QR di terminal
+
+��� Testing
+bash
+Copy
+Edit
+npm run test
+��� Kontribusi
+Pull request, issue, dan saran sangat diterima!
+
+��� Lisensi
 MIT License © 2025 — Danial Zulfiqar
