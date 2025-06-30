@@ -1,25 +1,25 @@
-# Ì¥ñ WhatsApp Voucher Bot
+# WhatsApp Voucher Bot
 
 Sistem bot WhatsApp otomatis untuk manajemen voucher Mikrotik berbasis Node.js. Menggunakan `whatsapp-web.js` dan API Mikrotik untuk mengelola pelanggan, reseller, voucher, dan saldo melalui WhatsApp secara real-time.
 
-‚ö†Ô∏è **Pastikan Anda memahami dasar Node.js, API Mikrotik, dan WhatsApp Web sebelum menggunakan sistem ini.**
+[!] Pastikan Anda memahami dasar Node.js, API Mikrotik, dan WhatsApp Web sebelum menggunakan sistem ini.
 
 ---
 
-## ‚ú® Fitur Utama
+## Fitur Utama
 
-- ‚úÖ Autentikasi WhatsApp Web via QR Code
-- ÌæüÔ∏è Generate & hapus voucher Mikrotik langsung dari WhatsApp
-- Ì≤∞ Manajemen saldo untuk Admin, Reseller, dan Customer
-- Ì¥Ñ Sinkronisasi otomatis data voucher dari Mikrotik
-- Ì≥¢ Notifikasi transaksi ke Telegram
-- Ì¥ó Webhook API lokal untuk integrasi eksternal
-- Ì≥Å Logging aktivitas bot untuk debugging
-- Ì¥ê Role-based command: Admin, Reseller, Customer
+- Autentikasi WhatsApp Web via QR Code
+- Generate & hapus voucher Mikrotik langsung dari WhatsApp
+- Manajemen saldo untuk Admin, Reseller, dan Customer
+- Sinkronisasi otomatis data voucher dari Mikrotik
+- Notifikasi transaksi ke Telegram
+- Webhook API lokal untuk integrasi eksternal
+- Logging aktivitas bot untuk debugging
+- Role-based command: Admin, Reseller, Customer
 
 ---
 
-## Ì≥¶ Requirement
+## Requirement
 
 - Node.js v16.x atau lebih tinggi
 - NPM (Node Package Manager)
@@ -29,7 +29,7 @@ Sistem bot WhatsApp otomatis untuk manajemen voucher Mikrotik berbasis Node.js. 
 
 ---
 
-## ‚öôÔ∏è Instalasi
+## Instalasi
 
 ```bash
 # 1. Clone repositori
