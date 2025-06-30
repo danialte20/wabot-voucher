@@ -1,49 +1,60 @@
-# í¿¢ WhatsApp Voucher Bot
+WhatsApp Voucher Bot í³±
 
-Sistem bot WhatsApp otomatis untuk manajemen voucher Mikrotik berbasis Node.js. Menggunakan [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) dan API Mikrotik untuk mengelola pelanggan, reseller, voucher, dan saldo melalui WhatsApp secara real-time.
+Sistem bot WhatsApp otomatis untuk manajemen voucher Mikrotik berbasis Node.js. Menggunakan whatsapp-web.js dan API Mikrotik untuk mengelola pelanggan, reseller, voucher, dan saldo melalui WhatsApp secara real-time.
 
----
+âš ï¸ Pastikan Anda sudah memahami konsep dasar Node.js, Mikrotik API, dan WhatsApp Web sebelum menggunakan sistem ini.
 
-## íº€ Fitur Utama
+í´§ Fitur Utama
 
-- í´ Autentikasi WhatsApp Web via QR code
-- í¾Ÿï¸ Generate dan hapus voucher Mikrotik langsung via WhatsApp
-- í²° Manajemen saldo pelanggan & reseller
-- í´„ Sinkronisasi otomatis data voucher dari Mikrotik
-- í´” Notifikasi transaksi ke Telegram
-- âš™ï¸ API lokal untuk integrasi webhook dan layanan eksternal
-- í³ Logging aktivitas bot
-- í±¥ Role command: Admin, Reseller, Customer
+- Autentikasi WhatsApp Web via QR Code
+- Generate & Hapus voucher Mikrotik langsung dari WhatsApp
+- Manajemen saldo untuk Admin, Reseller, dan Customer
+- Sinkronisasi otomatis data voucher dari Mikrotik
+- Notifikasi transaksi ke Telegram
+- Webhook API lokal untuk integrasi eksternal
+- Logging aktivitas bot untuk debugging
+- Role-based command: Admin, Reseller, Customer
 
----
+í·° Requirement
 
-## í³ Struktur Direktori
+- Node.js v16.x atau lebih tinggi
+- NPM (Node Package Manager)
+- PM2 (untuk produksi): npm install -g pm2
+- Router Mikrotik dengan API aktif
+- Bot Telegram untuk notifikasi (opsional)
 
-```bash
-wabot-voucher/
-â”œâ”€â”€ ecosystem.config.js         # Konfigurasi untuk PM2
-â”œâ”€â”€ package.json                # Metadata dan dependensi Node.js
-â”œâ”€â”€ public/                     # (Opsional) Panel UI (React/TS)
-â”œâ”€â”€ logs/                       # File log sistem
-â”œâ”€â”€ README.md                   # Dokumentasi ini
-â””â”€â”€ src/
-    â”œâ”€â”€ bot.js                  # Inisialisasi WhatsApp Web
-    â”œâ”€â”€ config.js               # File konfigurasi
-    â”œâ”€â”€ db.js                   # Koneksi ke MySQL/MongoDB
-    â”œâ”€â”€ commands/
-    â”‚   â”œâ”€â”€ admin.js            # Perintah untuk Admin
-    â”‚   â”œâ”€â”€ reseller.js         # Perintah untuk Reseller
-    â”‚   â””â”€â”€ customer.js         # Perintah untuk Customer
-    â”œâ”€â”€ helpers/
-    â”‚   â””â”€â”€ logger.js           # Logging ke file
-    â”œâ”€â”€ mikrotik.js             # Koneksi ke Router Mikrotik
-    â”œâ”€â”€ services.js             # Layanan utama (topup, generate, cek)
-    â”œâ”€â”€ sync_voucher.js         # Sinkronisasi voucher dari Mikrotik
-    â”œâ”€â”€ telegram_notifier.js    # Kirim notifikasi ke Telegram
-    â”œâ”€â”€ utils/
-    â”‚   â”œâ”€â”€ log.js              # Utilities logging
-    â”‚   â””â”€â”€ validation.js       # Validasi input
-    â”œâ”€â”€ utils.js                # Fungsi umum
-    â”œâ”€â”€ voucher_cleaner.js      # Auto hapus voucher expired
-    â””â”€â”€ webhook.js              # Web API untuk integrasi eksternal
+í»  Installasi
 
+1. Clone repositori:
+   git clone https://github.com/username/wabot-voucher.git 
+   cd wabot-voucher
+
+2. Instal dependensi:
+   npm install
+
+3. Konfigurasi file:
+   - Ubah sesuai kebutuhan di src/config.js
+
+4. Jalankan aplikasi:
+   npm start
+   Atau gunakan PM2 untuk production:
+   pm2 start ecosystem.config.js
+
+í³– Cara Penggunaan
+
+1. Jalankan bot, lalu scan QR Code WhatsApp Web yang ditampilkan.
+2. Kirim pesan ke bot WhatsApp dengan format perintah sesuai role:
+   - /topup 10000 (Customer)
+   - /addvoucher 1 jam 10MB (Admin/Reseller)
+   - /saldo (Semua role)
+
+3. Semua aktivitas akan tercatat di folder logs/.
+4. Notifikasi transaksi bisa dikirim ke Telegram jika sudah disetup.
+
+í´ Kontribusi
+
+Kontribusi sangat diterima! Silakan buka issue atau pull request di GitHub.
+
+í²¡ Lisensi
+
+MIT License - lihat file LICENSE untuk detail.
